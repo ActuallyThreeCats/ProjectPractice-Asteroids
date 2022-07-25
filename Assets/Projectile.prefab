@@ -102,6 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   timeToLive: 0.5
+  smallScore: 100
+  medScore: 50
+  largeScore: 25
 --- !u!50 &5242763979313653751
 Rigidbody2D:
   serializedVersion: 4
