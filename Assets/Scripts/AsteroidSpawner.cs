@@ -10,13 +10,14 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField] private GameObject ship;
     [SerializeField] private GameObject asteroidParent;
     private Vector2 spawnLoc;
+    [SerializeField] private bool isStartScreen;
 
     public GameObject Asteroid_Large;
     public GameObject Asteroid_Medium;
     public GameObject Asteroid_Small;
     [SerializeField] private int spawnAsteroidCount;
 
-    private static int[] bias = { 0,0,0,0,0,1,1,1,2};
+    private static int[] bias = { 0,0,0,0,0,0,0,1,1,1,1,2};
     private int index;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class AsteroidSpawner : MonoBehaviour
     }
     public void genNewLoc()
     {
+        
         spawnLoc = new Vector2(Random.Range(-camExtent.x, camExtent.x), Random.Range(-camExtent.y, camExtent.y));
         if (Vector2.Distance(spawnLoc, ship.transform.position) < minSpawnDistance)
         {
@@ -55,4 +57,6 @@ public class AsteroidSpawner : MonoBehaviour
         }
         while (gameObject.transform.childCount < spawnAsteroidCount);
     }
+
+
 }

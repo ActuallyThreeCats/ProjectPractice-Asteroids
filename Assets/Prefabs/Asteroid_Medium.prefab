@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1197616392972811383}
   m_Layer: 0
   m_Name: Asteroid_Medium
-  m_TagString: Asteroid_Medium
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,7 +160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d2e20f648c73446b6178f5a0df98b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 50
   direction: 2
+  smallerAsteroid: {fileID: 1405560057569452592, guid: c132c6e69ebcf824088c1717051d5f37, type: 3}
+  offset: 1
+  isSmall: 0
 --- !u!114 &669247980403212421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ca8506bfe25ed44a84ca0e697b94cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0, z: 0}
+  offset: 0.5
 --- !u!114 &-1197616392972811383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,4 +191,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c1cbc26d073f442b839552cef0c6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
+  maxSpeed: 2

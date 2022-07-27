@@ -1,27 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wrapper : MonoBehaviour
 {
+    [SerializeField] private Vector3 pos;
+    [SerializeField] private float offset = 0.5f;
+    private void Update()
+    {
+        pos = gameObject.transform.position;
+    }
     void LateUpdate()
     {
+        Vector3 bounds = Boundries.Instance.screenBounds;
         
-        if (gameObject.transform.position.x >= Boundries.Instance.screenBounds.x + 0.5)
+        if (pos.x >= bounds.x + offset)
         {
-            gameObject.transform.position = new Vector3(-Boundries.Instance.screenBounds.x, gameObject.transform.position.y);
+            gameObject.transform.position = new Vector3(-bounds.x, pos.y);
         }
-        if (gameObject.transform.position.x <= -Boundries.Instance.screenBounds.x - 0.5)
+        if (pos.x <= -bounds.x - offset)
         {
-            gameObject.transform.position = new Vector3(Boundries.Instance.screenBounds.x, gameObject.transform.position.y);
+            gameObject.transform.position = new Vector3(bounds.x, pos.y);
         }
-        if (gameObject.transform.position.y <= -Boundries.Instance.screenBounds.y - 0.5)
+        if (pos.y <= -bounds.y - offset)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, Boundries.Instance.screenBounds.y);
+            gameObject.transform.position = new Vector3(pos.x, bounds.y);
         }
-        if (gameObject.transform.position.y >= Boundries.Instance.screenBounds.y + 0.5)
+        if (pos.y >= bounds.y + offset)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, -Boundries.Instance.screenBounds.y);
+            gameObject.transform.position = new Vector3(pos.x, -bounds.y);
         }
 
 

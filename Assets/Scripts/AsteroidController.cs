@@ -6,37 +6,57 @@ public class AsteroidController : MonoBehaviour
 {
 
     private Rigidbody2D rb;
-
+    [SerializeField] private int score;
     [SerializeField] private float direction;
-
+    private int[] asteroidSize = new int[] {0,1,2};
+    [SerializeField] private GameObject smallerAsteroid;
+    [SerializeField] private int offset;
+    [SerializeField] private bool isSmall;
     // Start is called before the first frame update
     void Start()
     {
-    
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(Random.Range(-direction, direction), Random.Range(-direction, direction));
+    }
 
-        switch (gameObject.tag)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Projectile")
         {
-
-            case "Asteroid_Large":
-                direction = direction * 1;
-                break;
-            case "Asteroid_Medium":
-                direction = direction * 2;
-                break;
-            case "Asteroid_Small":
-                direction = direction * 3;
-                break;
-            default:
-                direction = 1;
-                break;
+            Destroy(collision.gameObject);
+            DestroyAsteroid(isSmall, score);
+            //Debug.Log("OnTriggerEnter");
+            
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DestroyAsteroid(bool isSmall, int score)
     {
-        
+       switch (isSmall)
+        {
+            case true:
+                DestroyAsteroid(score);
+                break;
+            case false:
+                Debug.Log("fucking why");
+                Instantiate(smallerAsteroid, gameObject.transform.position + rVec() , Quaternion.identity, gameObject.GetComponentInParent<AsteroidSpawner>().transform);
+                Instantiate(smallerAsteroid, gameObject.transform.position + rVec(), Quaternion.identity, gameObject.GetComponentInParent<AsteroidSpawner>().transform);
+                DestroyAsteroid(score);
+                break;
+
+        }
     }
+    public Vector3 rVec()
+    {
+        return new Vector2(UnityEngine.Random.Range(-0.5f, 0.5f), UnityEngine.Random.Range(-0.5f, 0.5f));
+    }
+
+    private void DestroyAsteroid(int score)
+    {
+        Destroy(gameObject);
+        AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.asteroid);
+
+        GameManager.Instance.score += score;
+    }
+
 }

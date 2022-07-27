@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Asteroid_Medium
-  - Asteroid_Large
-  - Asteroid_Small
+  - Projectile
+  - PlayerTrigger
+  - Undefined
+  - Asteroid
   layers:
   - Default
   - TransparentFX
